@@ -29,7 +29,7 @@
  * @link       https://github.com/OpenSID/opendk
  */
 
-namespace App\Http\Controllers\Role;
+namespace App\Http\Controllers\Admin\Role;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RoleRequest;

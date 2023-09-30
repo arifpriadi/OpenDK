@@ -29,7 +29,7 @@
  * @link       https://github.com/OpenSID/opendk
  */
 
-namespace App\Http\Controllers\Informasi;
+namespace App\Http\Controllers\Admin\Informasi;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArtikelRequest;
@@ -56,7 +56,7 @@ class ArtikelController extends Controller
                 ->addColumn('aksi', function ($row) {
                     $data['show_web'] = route('berita.detail', $row->slug);
 
-                    if (! auth()->guest()) {
+                    if (!auth()->guest()) {
                         $data['edit_url']   = route('informasi.artikel.edit', $row->id);
                         $data['delete_url'] = route('informasi.artikel.destroy', $row->id);
                     }
@@ -93,7 +93,7 @@ class ArtikelController extends Controller
                 $file = $request->file('gambar');
                 $path = Storage::putFile('public/artikel', $file);
 
-                $input['gambar'] = substr($path, 15) ;
+                $input['gambar'] = substr($path, 15);
             }
 
             Artikel::create($input);
@@ -124,7 +124,7 @@ class ArtikelController extends Controller
 
                 Storage::delete('public/artikel/' . $artikel->getRawOriginal('gambar'));
 
-                $input['gambar'] = substr($path, 15) ;
+                $input['gambar'] = substr($path, 15);
             }
 
             $artikel->update($input);

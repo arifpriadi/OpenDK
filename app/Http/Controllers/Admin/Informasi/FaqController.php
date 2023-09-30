@@ -29,7 +29,7 @@
  * @link       https://github.com/OpenSID/opendk
  */
 
-namespace App\Http\Controllers\Informasi;
+namespace App\Http\Controllers\Admin\Informasi;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FaqRequest;
@@ -61,7 +61,7 @@ class FaqController extends Controller
                 ->addColumn('aksi', function ($row) {
                     $data['show_web'] = route('faq');
 
-                    if (! auth()->guest()) {
+                    if (!auth()->guest()) {
                         $data['edit_url']   = route('informasi.faq.edit', $row->id);
                         $data['delete_url'] = route('informasi.faq.destroy', $row->id);
                     }

@@ -29,7 +29,7 @@
  * @link       https://github.com/OpenSID/opendk
  */
 
-namespace App\Http\Controllers\Surat;
+namespace App\Http\Controllers\Admin\Surat;
 
 use App\Enums\StatusSurat;
 use App\Http\Controllers\Controller;

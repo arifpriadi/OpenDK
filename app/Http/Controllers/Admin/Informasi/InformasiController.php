@@ -29,7 +29,7 @@
  * @link       https://github.com/OpenSID/opendk
  */
 
-namespace App\Http\Controllers\Informasi;
+namespace App\Http\Controllers\Admin\Informasi;
 
 use App\Http\Controllers\Controller;
 

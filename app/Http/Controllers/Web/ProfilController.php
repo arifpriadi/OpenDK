@@ -29,7 +29,7 @@
  * @link       https://github.com/OpenSID/opendk
  */
 
-namespace App\Http\Controllers\Page;
+namespace App\Http\Controllers\Web;
 
 use App\Facades\Counter;
 use App\Http\Controllers\Controller;

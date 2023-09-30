@@ -29,7 +29,7 @@
  * @link       https://github.com/OpenSID/opendk
  */
 
-namespace App\Http\Controllers\SistemKomplain;
+namespace App\Http\Controllers\Admin\SistemKomplain;
 
 use App\Http\Controllers\Controller;
 use App\Models\JawabKomplain;
@@ -98,7 +98,7 @@ class SistemKomplainController extends Controller
         $id  = mt_rand(100000, 999999);
         $pid = '';
 
-        if (! Komplain::where('komplain_id', '=', $id)->exists()) {
+        if (!Komplain::where('komplain_id', '=', $id)->exists()) {
             $pid = $id;
         } else {
             $this->generateID();

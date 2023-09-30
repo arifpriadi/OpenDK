@@ -29,7 +29,7 @@
  * @link       https://github.com/OpenSID/opendk
  */
 
-namespace App\Http\Controllers\Page;
+namespace App\Http\Controllers\Web;
 
 use App\Facades\Counter;
 use App\Http\Controllers\Controller;
@@ -237,8 +237,8 @@ class KependudukanController extends Controller
             ->leftJoin('ref_pendidikan_kk', 'pendidikan_kk_id', '=', 'ref_pendidikan_kk.id');
         // SD
         $total_sd = (clone $query_pendidikan)
-                ->where('pendidikan_kk_id', 3)
-                ->count();
+            ->where('pendidikan_kk_id', 3)
+            ->count();
 
         // SMP
         $total_sltp = (clone $query_pendidikan)
@@ -247,27 +247,27 @@ class KependudukanController extends Controller
 
         //SMA
         $total_slta = (clone $query_pendidikan)
-                ->where('pendidikan_kk_id', 5)
-                ->count();
+            ->where('pendidikan_kk_id', 5)
+            ->count();
 
         // DIPLOMA
         $total_diploma = (clone $query_pendidikan)
-                ->whereRaw('(pendidikan_kk_id = 6 or pendidikan_kk_id = 7)')
-                ->count();
+            ->whereRaw('(pendidikan_kk_id = 6 or pendidikan_kk_id = 7)')
+            ->count();
 
         // SARJANA
         $total_sarjana = (clone $query_pendidikan)
-                ->whereRaw('(pendidikan_kk_id = 8 or pendidikan_kk_id = 9 or pendidikan_kk_id = 10)')
-                ->count();
+            ->whereRaw('(pendidikan_kk_id = 8 or pendidikan_kk_id = 9 or pendidikan_kk_id = 10)')
+            ->count();
 
         $data_pendidikan[] = [
-                'year'    => $year,
-                'SD'      => $total_sd,
-                'SLTP'    => $total_sltp,
-                'SLTA'    => $total_slta,
-                'DIPLOMA' => $total_diploma,
-                'SARJANA' => $total_sarjana,
-            ];
+            'year'    => $year,
+            'SD'      => $total_sd,
+            'SLTP'    => $total_sltp,
+            'SLTA'    => $total_slta,
+            'DIPLOMA' => $total_diploma,
+            'SARJANA' => $total_sarjana,
+        ];
 
         return $data_pendidikan;
     }

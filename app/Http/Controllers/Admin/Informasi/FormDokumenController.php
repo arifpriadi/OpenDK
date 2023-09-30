@@ -29,7 +29,7 @@
  * @link       https://github.com/OpenSID/opendk
  */
 
-namespace App\Http\Controllers\Informasi;
+namespace App\Http\Controllers\Admin\Informasi;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DokumenRequest;
@@ -50,7 +50,7 @@ class FormDokumenController extends Controller
     {
         return DataTables::of(FormDokumen::all())
             ->addColumn('aksi', function ($row) {
-                if (! auth()->guest()) {
+                if (!auth()->guest()) {
                     $data['edit_url']   = route('informasi.form-dokumen.edit', $row->id);
                     $data['delete_url'] = route('informasi.form-dokumen.destroy', $row->id);
                 }

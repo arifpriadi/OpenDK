@@ -29,7 +29,7 @@
  * @link       https://github.com/OpenSID/opendk
  */
 
-namespace App\Http\Controllers\Pesan;
+namespace App\Http\Controllers\Admin\Pesan;
 
 use App\Http\Controllers\Controller;
 use App\Models\DataDesa;
@@ -81,16 +81,18 @@ class PesanController extends Controller
         $counter_unread =  Pesan::where([
             'jenis' => Pesan::PESAN_MASUK,
             'diarsipkan' => Pesan::NON_ARSIP,
-            'sudah_dibaca' => Pesan::BELUM_DIBACA])->count();
+            'sudah_dibaca' => Pesan::BELUM_DIBACA
+        ])->count();
         $counter_unread_keluar =  Pesan::where([
             'jenis' => Pesan::PESAN_KELUAR,
             'diarsipkan' => Pesan::NON_ARSIP,
-            'sudah_dibaca' => Pesan::BELUM_DIBACA])->count();
+            'sudah_dibaca' => Pesan::BELUM_DIBACA
+        ])->count();
 
         return [
             'counter_unread' => $counter_unread,
             'counter_unread_keluar' => $counter_unread_keluar,
-         ];
+        ];
     }
 
     public function loadPesanKeluar(Request $request)
@@ -202,7 +204,7 @@ class PesanController extends Controller
                     'pesan_id' => $id,
                     'text' => Purify::clean($request->get('text')),
                     'pengirim' => 'kecamatan',
-                    'nama_pengirim' => 'kecamatan - '. auth()->user()->name,
+                    'nama_pengirim' => 'kecamatan - ' . auth()->user()->name,
                 ]);
             });
 
@@ -254,7 +256,7 @@ class PesanController extends Controller
             'pesan_id' => $request->get('id'),
             'text' => Purify::clean($request->get('text')),
             'pengirim' => 'kecamatan',
-            'nama_pengirim' => 'kecamatan - '. auth()->user()->name
+            'nama_pengirim' => 'kecamatan - ' . auth()->user()->name
         ]);
 
         if ($pesan) {

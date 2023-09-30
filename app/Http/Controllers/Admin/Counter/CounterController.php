@@ -29,7 +29,7 @@
  * @link       https://github.com/OpenSID/opendk
  */
 
-namespace App\Http\Controllers\Counter;
+namespace App\Http\Controllers\Admin\Counter;
 
 use App\Http\Controllers\Controller;
 use App\Models\CounterPage;

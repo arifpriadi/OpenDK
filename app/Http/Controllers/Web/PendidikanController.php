@@ -29,7 +29,7 @@
  * @link       https://github.com/OpenSID/opendk
  */
 
-namespace App\Http\Controllers\Page;
+namespace App\Http\Controllers\Web;
 
 use App\Facades\Counter;
 use App\Http\Controllers\Controller;
@@ -83,7 +83,7 @@ class PendidikanController extends Controller
             foreach ($desa as $value) {
                 $query_pendidikan = DB::table('das_tingkat_pendidikan')
                     ->selectRaw('sum(tidak_tamat_sekolah) as tidak_tamat_sekolah, sum(tamat_sd) as tamat_sd, sum(tamat_smp) as tamat_smp, sum(tamat_sma) as tamat_sma, sum(tamat_diploma_sederajat) as tamat_diploma_sederajat')
-                   // ->whereRaw('bulan in ('.$this->getIdsQuartal($key).')')
+                    // ->whereRaw('bulan in ('.$this->getIdsQuartal($key).')')
                     ->where('tahun', $year)
                     ->where('desa_id', '=', $value->desa_id)
                     ->get()->first();

@@ -29,7 +29,7 @@
  * @link       https://github.com/OpenSID/opendk
  */
 
-namespace App\Http\Controllers\Informasi;
+namespace App\Http\Controllers\Admin\Informasi;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventRequest;
@@ -93,7 +93,7 @@ class EventController extends Controller
                 $fileName = $lampiran->getClientOriginalName();
                 $path     = "event/" . $event->id . '/';
                 File::deleteDirectory(base_path('public/' . $path)); //hapus directory sebelumnya
-                $lampiran->move(base_path('public/'.$path), $fileName);
+                $lampiran->move(base_path('public/' . $path), $fileName);
                 $input['attachment'] = $path . $fileName;
             }
             $input['end']    = date('Y-m-d H:i', strtotime($waktu[1]));

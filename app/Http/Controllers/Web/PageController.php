@@ -29,7 +29,7 @@
  * @link       https://github.com/OpenSID/opendk
  */
 
-namespace App\Http\Controllers\Page;
+namespace App\Http\Controllers\Web;
 
 use App\Facades\Counter;
 use App\Http\Controllers\Controller;
@@ -73,9 +73,9 @@ class PageController extends Controller
     private function getFeeds()
     {
         $all_desa = DataDesa::websiteUrl()->get()
-        ->map(function ($desa) {
-            return $desa->website_url_feed;
-        })->all();
+            ->map(function ($desa) {
+                return $desa->website_url_feed;
+            })->all();
 
         $feeds = [];
         foreach ($all_desa as $desa) {
