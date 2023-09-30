@@ -7,7 +7,7 @@
         "OpenDK",
         "Dashboard Kecamatan"
     ],
-    "homepage": "https://opendk.my.id/",
+    "homepage": "https://demodk.opendesa.id/",
     "require": {
         "php": ">=7.4.0",
         "bensampo/laravel-enum": "2",
