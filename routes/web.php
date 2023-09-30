@@ -166,7 +166,7 @@ Route::group(['middleware' => ['installed', 'xss_sanitization']], function () {
     Route::group(['middleware' => 'auth:web'], function () {
         // Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@logout']);
 
-        Route::get('/dashboard', 'DashboardController')->name('dashboard');
+        Route::get('/dashboard', 'Admin\DashboardController')->name('dashboard');
         Route::namespace('Auth')->group(function () {
             Route::group(['prefix' => 'changedefault', 'middleware' => ['role:administrator-website|super-admin|admin-kecamatan|kontributor-artikel']], function () {
                 Route::get('/', 'ChangeDefaultController@index')->name('change-default');
@@ -177,7 +177,7 @@ Route::group(['middleware' => ['installed', 'xss_sanitization']], function () {
         /**
          * Group Routing for Informasi
          */
-        Route::namespace('Informasi')->group(function () {
+        Route::namespace('Admin\Informasi')->group(function () {
             Route::group(['prefix' => 'informasi', 'middleware' => ['role:administrator-website|super-admin|admin-kecamatan|kontributor-artikel']], function () {
                 // Prosedur
                 Route::group(['prefix' => 'prosedur'], function () {
@@ -294,7 +294,7 @@ Route::group(['middleware' => ['installed', 'xss_sanitization']], function () {
         /**
          * Group Routing for Data
          */
-        Route::namespace('Data')->group(function () {
+        Route::namespace('Admin\Data')->group(function () {
             Route::group(['prefix' => 'data'], function () {
                 // Profil
                 Route::group(['prefix' => 'profil', 'excluded_middleware' => 'xss_sanitization'], function () {
@@ -521,7 +521,7 @@ Route::group(['middleware' => ['installed', 'xss_sanitization']], function () {
         /**
          * Group Routing for Pesan
          */
-        Route::namespace('Pesan')->group(function () {
+        Route::namespace('Admin\Pesan')->group(function () {
             //Routes Resource Pesan
             Route::group(['prefix' => 'pesan'], function () {
                 Route::get('/', ['as' => 'pesan.index', 'uses' => 'PesanController@index']);
@@ -540,7 +540,7 @@ Route::group(['middleware' => ['installed', 'xss_sanitization']], function () {
         /**
          * Group Routing for Pesan
          */
-        Route::namespace('Surat')->group(function () {
+        Route::namespace('Admin\Surat')->group(function () {
             Route::group(['prefix' => 'surat', 'middleware' => ['role:super-admin|admin-kecamatan']], function () {
                 //permohonan
                 Route::group(['prefix' => 'permohonan'], function () {
@@ -570,9 +570,9 @@ Route::group(['middleware' => ['installed', 'xss_sanitization']], function () {
         /**
          * Group Routing for Setting
          */
-        Route::group(['prefix' => 'setting'], function () {
+        Route::namespace('Admin\Setting')->group(['prefix' => 'setting'], function () {
             // User Management
-            Route::group(['prefix' => 'user','middleware' => ['role:super-admin|administrator-website']], function () {
+            Route::group(['prefix' => 'user', 'middleware' => ['role:super-admin|administrator-website']], function () {
                 Route::get('/', ['as' => 'setting.user.index', 'uses' => 'User\UserController@index']);
                 Route::get('getdata', ['as' => 'setting.user.getdata', 'uses' => 'User\UserController@getDataUser']);
                 Route::get('create', ['as' => 'setting.user.create', 'uses' => 'User\UserController@create']);
@@ -588,7 +588,7 @@ Route::group(['middleware' => ['installed', 'xss_sanitization']], function () {
             });
 
             // Role Management
-            Route::group(['prefix' => 'role', 'middleware' => ['role:super-admin|administrator-website']], function () {
+            Route::namespace('Admin\Role')->group(['prefix' => 'role', 'middleware' => ['role:super-admin|administrator-website']], function () {
                 Route::get('/', ['as' => 'setting.role.index', 'uses' => 'Role\RoleController@index']);
                 Route::get('getdata', ['as' => 'setting.role.getdata', 'uses' => 'Role\RoleController@getData']);
                 Route::get('create', ['as' => 'setting.role.create', 'uses' => 'Role\RoleController@create']);
@@ -599,7 +599,7 @@ Route::group(['middleware' => ['installed', 'xss_sanitization']], function () {
             });
 
             // Komplain Kategori
-            Route::group(['prefix' => 'komplain-kategori', 'middleware' => ['role:super-admin|admin-komplain|administrator-website']], function () {
+            Route::namespace('Admin\Komplain')->group(['prefix' => 'komplain-kategori', 'middleware' => ['role:super-admin|admin-komplain|administrator-website']], function () {
                 Route::get('/', ['as' => 'setting.komplain-kategori.index', 'uses' => 'Setting\KategoriKomplainController@index']);
                 Route::get('getdata', ['as' => 'setting.komplain-kategori.getdata', 'uses' => 'Setting\KategoriKomplainController@getData']);
                 Route::get('create', ['as' => 'setting.komplain-kategori.create', 'uses' => 'Setting\KategoriKomplainController@create']);
@@ -621,7 +621,7 @@ Route::group(['middleware' => ['installed', 'xss_sanitization']], function () {
             });
 
             // Jenis Penyakit
-            Route::group(['prefix' => 'jenis-penyakit','middleware' => ['role:super-admin|admin-puskesmas|administrator-website']], function () {
+            Route::group(['prefix' => 'jenis-penyakit', 'middleware' => ['role:super-admin|admin-puskesmas|administrator-website']], function () {
                 Route::get('/', ['as' => 'setting.jenis-penyakit.index', 'uses' => 'Setting\JenisPenyakitController@index']);
                 Route::get('getdata', ['as' => 'setting.jenis-penyakit.getdata', 'uses' => 'Setting\JenisPenyakitController@getData']);
                 Route::get('create', ['as' => 'setting.jenis-penyakit.create', 'uses' => 'Setting\JenisPenyakitController@create']);
@@ -632,7 +632,7 @@ Route::group(['middleware' => ['installed', 'xss_sanitization']], function () {
             });
 
             // Tipe Potensi
-            Route::group(['prefix' => 'tipe-potensi','middleware' => ['role:super-admin|administrator-website']], function () {
+            Route::group(['prefix' => 'tipe-potensi', 'middleware' => ['role:super-admin|administrator-website']], function () {
                 Route::get('/', ['as' => 'setting.tipe-potensi.index', 'uses' => 'Setting\TipePotensiController@index']);
                 Route::get('getdata', ['as' => 'setting.tipe-potensi.getdata', 'uses' => 'Setting\TipePotensiController@getData']);
                 Route::get('create', ['as' => 'setting.tipe-potensi.create', 'uses' => 'Setting\TipePotensiController@create']);
@@ -643,7 +643,7 @@ Route::group(['middleware' => ['installed', 'xss_sanitization']], function () {
             });
 
             // Slide
-            Route::group(['prefix' => 'slide','middleware' => ['role:super-admin|administrator-website']], function () {
+            Route::group(['prefix' => 'slide', 'middleware' => ['role:super-admin|administrator-website']], function () {
                 Route::get('/', ['as' => 'setting.slide.index', 'uses' => 'Setting\SlideController@index']);
                 Route::get('getdata', ['as' => 'setting.slide.getdata', 'uses' => 'Setting\SlideController@getData']);
                 Route::get('create', ['as' => 'setting.slide.create', 'uses' => 'Setting\SlideController@create']);
@@ -655,7 +655,7 @@ Route::group(['middleware' => ['installed', 'xss_sanitization']], function () {
             });
 
             // COA
-            Route::group(['prefix' => 'coa','middleware' => ['role:super-admin|administrator-website']], function () {
+            Route::group(['prefix' => 'coa', 'middleware' => ['role:super-admin|administrator-website']], function () {
                 Route::get('/', ['as' => 'setting.coa.index', 'uses' => 'Setting\COAController@index']);
                 Route::get('create', ['as' => 'setting.coa.create', 'uses' => 'Setting\COAController@create']);
                 Route::post('store', ['as' => 'setting.coa.store', 'uses' => 'Setting\COAController@store']);
@@ -664,13 +664,13 @@ Route::group(['middleware' => ['installed', 'xss_sanitization']], function () {
                 Route::get('generate_id/{type_id}/{sub_id}/{sub_sub_id}', ['as' => 'setting.coa.generate_id', 'uses' => 'Setting\COAController@generate_id']);
             });
 
-            Route::group(['prefix' => 'aplikasi','middleware' => ['role:super-admin|administrator-website']], function () {
+            Route::group(['prefix' => 'aplikasi', 'middleware' => ['role:super-admin|administrator-website']], function () {
                 Route::get('/', ['as' => 'setting.aplikasi.index', 'uses' => 'Setting\AplikasiController@index']);
                 Route::get('/edit/{aplikasi}', ['as' => 'setting.aplikasi.edit', 'uses' => 'Setting\AplikasiController@edit']);
                 Route::put('/update/{aplikasi}', ['as' => 'setting.aplikasi.update', 'uses' => 'Setting\AplikasiController@update']);
             });
 
-            Route::group(['prefix' => 'info-sistem','middleware' => ['role:super-admin|administrator-website']], function () {
+            Route::group(['prefix' => 'info-sistem', 'middleware' => ['role:super-admin|administrator-website']], function () {
                 Route::get('/', ['as' => 'setting.info-sistem', 'uses' => 'LogViewerController@index']);
                 Route::get('/linkstorage', ['as' => 'setting.info-sistem.linkstorage', 'uses' => 'LogViewerController@linkStorage']);
                 Route::get('/queuelisten', ['as' => 'setting.info-sistem.queuelisten', 'uses' => 'LogViewerController@queueListen']);
